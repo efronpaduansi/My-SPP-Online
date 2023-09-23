@@ -21,7 +21,7 @@
                                     <h6 class="text-muted font-semibold">
                                         Belum Bayar
                                     </h6>
-                                    <h6 class="font-extrabold mb-0">112.000</h6>
+                                    <h6 class="font-extrabold mb-0">{{ number_format($invoiceUnpaid, 0, '.', '.') }}</h6>
                                 </div>
                             </div>
                         </div>
@@ -38,7 +38,7 @@
                                 </div>
                                 <div class="col-md-8 col-lg-12 col-xl-12 col-xxl-7">
                                     <h6 class="text-muted font-semibold">Lunas</h6>
-                                    <h6 class="font-extrabold mb-0">183.000</h6>
+                                    <h6 class="font-extrabold mb-0">{{ number_format($invoicePaid, 0, '.', '.') }}</h6>
                                 </div>
                             </div>
                         </div>
@@ -55,7 +55,7 @@
                                 </div>
                                 <div class="col-md-8 col-lg-12 col-xl-12 col-xxl-7">
                                     <h6 class="text-muted font-semibold">Pendapatan</h6>
-                                    <h6 class="font-extrabold mb-0">80.000</h6>
+                                    <h6 class="font-extrabold mb-0">{{ number_format($income, 0, '.', '.') }}</h6>
                                 </div>
                             </div>
                         </div>
@@ -71,8 +71,8 @@
                                     </div>
                                 </div>
                                 <div class="col-md-8 col-lg-12 col-xl-12 col-xxl-7">
-                                    <h6 class="text-muted font-semibold">Jumlah Siswa</h6>
-                                    <h6 class="font-extrabold mb-0">112</h6>
+                                    <h6 class="text-muted font-semibold">Total Diskon</h6>
+                                    <h6 class="font-extrabold mb-0">{{ number_format($invoiceDiscount, 0, '.', '.') }}</h6>
                                 </div>
                             </div>
                         </div>
@@ -97,51 +97,46 @@
                 <div class="card-body py-4 px-4">
                     <div class="d-flex align-items-center">
                         <div class="avatar avatar-xl">
-                            <img src="{{ asset('adminpanel/assets/compiled/jpg/1.jpg') }}" alt="Avatar" />
+                            <h1><i class="fas fa-user-circle"></i></h1>
                         </div>
                         <div class="ms-3 name">
                             <h5 class="font-bold">{{ Auth::user()->name }}</h5>
-                            <h6 class="text-muted mb-0">{{ Auth::user()->email }}</h6>
+                            <small class="text-muted mb-0">{{ Auth::user()->email }}</small>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="card">
                 <div class="card-header">
-                    <h4>Recent Messages</h4>
+                    <h4>Informasi Sistem</h4>
                 </div>
                 <div class="card-content pb-4">
                     <div class="recent-message d-flex px-4 py-3">
                         <div class="avatar avatar-lg">
-                            <img src="./assets/compiled/jpg/4.jpg" />
+                            <i class="fab fa-chrome"></i>
                         </div>
                         <div class="name ms-4">
-                            <h5 class="mb-1">Hank Schrader</h5>
-                            <h6 class="text-muted mb-0">@johnducky</h6>
+                            <h5 class="mb-1">{{ $browser }}</h5>
+                            <h6 class="text-muted mb-0">Browser</h6>
                         </div>
                     </div>
                     <div class="recent-message d-flex px-4 py-3">
                         <div class="avatar avatar-lg">
-                            <img src="./assets/compiled/jpg/5.jpg" />
+                            <i class="fab fa-chrome"></i>
                         </div>
                         <div class="name ms-4">
-                            <h5 class="mb-1">Dean Winchester</h5>
-                            <h6 class="text-muted mb-0">@imdean</h6>
+                            <h5 class="mb-1">{{ $browserVersion }}</h5>
+                            <h6 class="text-muted mb-0">Browser Version</h6>
                         </div>
                     </div>
                     <div class="recent-message d-flex px-4 py-3">
                         <div class="avatar avatar-lg">
-                            <img src="./assets/compiled/jpg/1.jpg" />
+                            <i class="fas fa-laptop"></i>
                         </div>
                         <div class="name ms-4">
-                            <h5 class="mb-1">John Dodol</h5>
-                            <h6 class="text-muted mb-0">@dodoljohn</h6>
+                            <h5 class="mb-1">{{ $platform }}</h5>
+                            <h6 class="text-muted mb-0">Operating System</h6>
                         </div>
-                    </div>
-                    <div class="px-4">
-                        <button class="btn btn-block btn-xl btn-outline-primary font-bold mt-3">
-                            Start Conversation
-                        </button>
                     </div>
                 </div>
             </div>
