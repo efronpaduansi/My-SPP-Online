@@ -12,6 +12,7 @@
         "vite": "^4.0.0"
     },
     "dependencies": {
+        "apexcharts": "^3.42.0",
         "jquery-validation": "^1.19.5"
     }
 }
