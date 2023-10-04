@@ -35,7 +35,7 @@
                                     <td>{{ date('d/m/Y', strtotime($semester->close_date)) }}</td>
                                     <td>
                                         @if ($semester->close_date <= date('Y-m-d'))
-                                            <span class="btn btn-sm btn-danger rounded-pill">Tutup</span>
+                                            <span class="btn btn-sm btn-danger rounded-pill">Berakhir</span>
                                         @else
                                             <span class="btn btn-sm btn-success rounded-pill">Sedang berjalan</span>
                                         @endif
