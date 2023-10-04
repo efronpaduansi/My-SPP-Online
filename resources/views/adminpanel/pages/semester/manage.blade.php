@@ -21,6 +21,7 @@
                                 <th>Semester</th>
                                 <th>Tgl Mulai</th>
                                 <th>Tgl Selesai</th>
+                                <th>Status</th>
                                 <th>Opsi</th>
                             </tr>
                         </thead>
@@ -32,8 +33,21 @@
                                     <td>{{ $semester->semester_name }}</td>
                                     <td>{{ date('d/m/Y', strtotime($semester->start_date)) }}</td>
                                     <td>{{ date('d/m/Y', strtotime($semester->close_date)) }}</td>
+                                    <td>
+                                        @if ($semester->close_date <= date('Y-m-d'))
+                                            <span class="btn btn-sm btn-danger rounded-pill">Tutup</span>
+                                        @else
+                                            <span class="btn btn-sm btn-success rounded-pill">Sedang berjalan</span>
+                                        @endif
+                                    </td>
                                     <td class="d-flex">
-                                        <button class="btn btn-sm btn-success me-2" data-bs-toggle="modal"
+                                        @if ($semester->close_date > date('Y-m-d'))
+                                            <a href="{{ route('semester.close', $semester->id) }}"
+                                                class="btn btn-sm btn-info"
+                                                onclick="return confirm('Tutup semester berjalan?')"><i
+                                                    class="fas fa-lock"></i></a>
+                                        @endif
+                                        <button class="btn btn-sm btn-success mx-2" data-bs-toggle="modal"
                                             data-bs-target="#editSemesterModal{{ $semester->id }}"><i
                                                 class="fas fa-edit"></i></button>
                                         {{-- Edit Semester Modal --}}
