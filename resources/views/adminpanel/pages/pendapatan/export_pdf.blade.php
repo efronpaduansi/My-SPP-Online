@@ -17,7 +17,7 @@
                 <hr>
             </div>
 
-            <table class="table table-bordered" border="1">
+            <table class="table table-bordered">
                 <thead>
                     <tr class="text-uppercase">
                         <th>No</th>
