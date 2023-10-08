@@ -110,6 +110,13 @@
                     </ul>
                 </li>
                 @if (Auth::user()->role_id == 1)
+                    <li class="sidebar-item {{ request()->is('pendapatan') ? 'active' : '' }}">
+                        <a href="{{ route('pendapatan.index') }}" class="sidebar-link">
+                            <i class="fas fa-wallet"></i>
+                            <span>Pendapatan</span>
+                        </a>
+                    </li>
+
                     <li class="sidebar-item has-sub">
                         <a href="#" class="sidebar-link">
                             <i class="fas fa-sliders-h"></i>

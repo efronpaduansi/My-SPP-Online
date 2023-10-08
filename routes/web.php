@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\SemesterController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\LevelSiswaController;
+use App\Http\Controllers\Admin\PendapatanController;
 use App\Http\Controllers\Admin\TahunAjaranController;
 
 
@@ -81,6 +82,11 @@ Route::middleware(['auth'])->group(function () {
     Route::controller(PaymentController::class)->group(function(){
         Route::get('payment', 'index')->name('payment.index');
         Route::delete('payment/{id}', 'destroy')->name('payment.destroy');
+    });
+
+    Route::controller(PendapatanController::class)->group(function(){
+        Route::get('pendapatan', 'index')->name('pendapatan.index');
+        Route::get('pendapatan/export-pdf', 'exportPDF')->name('pendapatan.export-pdf');
     });
 
     Route::controller(ProfileController::class)->group(function(){
