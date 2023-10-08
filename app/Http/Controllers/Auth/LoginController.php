@@ -9,7 +9,13 @@ use Illuminate\Support\Facades\Auth;
 use Alert;
 class LoginController extends Controller
 {
+
     public function index()
+    {
+        return redirect()->route('auth.login');
+    }
+    
+    public function login()
     {
         return view('auth.Login');
     }
@@ -17,7 +23,7 @@ class LoginController extends Controller
     public function authenticate(Request $request) : RedirectResponse
     {
         $credentials = $request->validate([
-            'email' => ['required', 'email'],
+            'email' => ['required', 'email:dns'],
             'password' => ['required'],
         ]);
 

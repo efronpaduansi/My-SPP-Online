@@ -15,10 +15,12 @@ use App\Http\Controllers\Admin\TahunAjaranController;
 
 
 Route::controller(LoginController::class)->group(function(){
-    Route::get('/', 'index')->name('auth.index');
-    Route::post('/', 'authenticate')->name('auth.authenticate');
-    Route::post('/logout', 'logout')->name('auth.logout');
+    Route::get('/', 'index')->name('auth.index')->middleware('guest');
+    Route::get('/login', 'login')->name('auth.login')->middleware('guest');
+    Route::post('/login', 'authenticate')->name('auth.authenticate')->middleware('guest');
+    Route::post('/logout', 'logout')->name('auth.logout')->middleware('auth');
 });
+
 
 Route::middleware(['auth'])->group(function () {
     
