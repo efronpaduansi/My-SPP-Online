@@ -16,7 +16,9 @@ class PaymentTkExport implements FromCollection
                     ->select('b.nis', 'b.name', 'c.semester_name', 'a.date', 'a.sub_total', 'a.discount', 'a.status')
                     ->join('siswa as b', 'a.student_id', '=', 'b.id')
                     ->join('semester as c', 'a.semester_id', '=', 'c.id')
+                    // ->join('semester as c', 'a.semester_id', '=', 'c.id')
                     ->where('a.status', 'lunas')
+                    ->where('b.level_id', 1)
                     ->get();
     }
 }

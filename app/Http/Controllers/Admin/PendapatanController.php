@@ -31,30 +31,14 @@ class PendapatanController extends Controller
 
     public function exportData(Request $request)
     {   
-        $level = $request->all();
-
-        switch ($level) {
-            case '1':
-                $this->exportExcelLevelTK();
-                break;
-
-            case '2':
-                $this->exportExcelLevelSDSatu();
-                break;
-            
-            default:
-                $this->exportExcelLevelTK();
-                break;
+        $level = $request->level_id;
+        if($level == 1){
+            return Excel::download(new PaymentTkExport, 'pembayaran-tk.xlsx');
+            return redirect()->route('pendapatan.index');
+        }else{
+            dd('Bukan TK');
         }
+        
     }
 
-    private function exportExcelLevelTK()
-    {
-        return Excel::download(new PaymentTkExport, 'pembayaran-tk.xlsx');
-    }
-
-    private function exportExcelLevelSDSatu()
-    {
-        dd('data SD I');
-    }
 }
