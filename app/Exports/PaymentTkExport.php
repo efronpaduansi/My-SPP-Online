@@ -4,8 +4,12 @@ namespace App\Exports;
 
 use App\Models\Payment;
 use Maatwebsite\Excel\Concerns\FromCollection;
+use Maatwebsite\Excel\Concerns\WithHeadings;
+use Maatwebsite\Excel\Concerns\ShouldAutoSize;
+use Maatwebsite\Excel\Concerns\WithEvents;
+use Maatwebsite\Excel\Events\AfterSheet;
 use Illuminate\Support\Facades\DB;
-class PaymentTkExport implements FromCollection
+class PaymentTkExport implements FromCollection, WithHeadings
 {
     /**
     * @return \Illuminate\Support\Collection
@@ -20,5 +24,18 @@ class PaymentTkExport implements FromCollection
                     ->where('a.status', 'lunas')
                     ->where('b.level_id', 1)
                     ->get();
+    }
+
+    public function headings(): array
+    {
+        return [
+            'No. Induk Siswa',
+            'Nama Siswa',
+            'Semester',
+            'Tanggal',
+            'Total',
+            'Diskon',
+            'Keterangan'
+        ];
     }
 }
