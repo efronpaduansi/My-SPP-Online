@@ -87,6 +87,7 @@ Route::middleware(['auth'])->group(function () {
     Route::controller(PendapatanController::class)->group(function(){
         Route::get('pendapatan', 'index')->name('pendapatan.index');
         Route::get('pendapatan/export-pdf', 'exportPDF')->name('pendapatan.export-pdf');
+        Route::get('pendapatan/export-data', 'exportData')->name('pendapatan.exportData');
     });
 
     Route::controller(ProfileController::class)->group(function(){

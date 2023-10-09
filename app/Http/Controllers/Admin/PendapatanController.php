@@ -2,17 +2,22 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\Payment;
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use PDF;
+use App\Models\Payment;
+use App\Models\LevelSiswa;
+use Illuminate\Http\Request;
+use App\Exports\PaymentTkExport;
+use App\Http\Controllers\Controller;
+use Maatwebsite\Excel\Facades\Excel;
+
 class PendapatanController extends Controller
 {
     public function index()
     {
         $data = Payment::with('invoice')->orderBy('id', 'asc')->get();
         $totalPendapatan = Payment::sum('amount');
-        return view('adminpanel.pages.pendapatan.index', compact('data', 'totalPendapatan'));
+        $levels = LevelSiswa::all();
+        return view('adminpanel.pages.pendapatan.index', compact('data', 'totalPendapatan', 'levels'));
     }
 
     public function exportPDF()
@@ -21,5 +26,35 @@ class PendapatanController extends Controller
         $totalPendapatan = Payment::sum('amount');
         $pdf = PDF::loadview('adminpanel.pages.pendapatan.export_pdf',compact('data', 'totalPendapatan'));
     	return $pdf->download('laporan-pendapatan-pdf');
+    }
+
+
+    public function exportData(Request $request)
+    {   
+        $level = $request->all();
+
+        switch ($level) {
+            case '1':
+                $this->exportExcelLevelTK();
+                break;
+
+            case '2':
+                $this->exportExcelLevelSDSatu();
+                break;
+            
+            default:
+                $this->exportExcelLevelTK();
+                break;
+        }
+    }
+
+    private function exportExcelLevelTK()
+    {
+        return Excel::download(new PaymentTkExport, 'pembayaran-tk.xlsx');
+    }
+
+    private function exportExcelLevelSDSatu()
+    {
+        dd('data SD I');
     }
 }

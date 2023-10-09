@@ -9,7 +9,9 @@
         <div class="card">
             <div class="card-header">
                 <div class="d-flex">
-                    <a href="{{ route('pendapatan.export-pdf') }}" class="btn btn-primary" target="_blank">Export PDF</a>
+                    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exportModal">
+                        <i class="fas fa-file-excel"></i> Export Data
+                    </button>
                 </div>
             </div>
             <div class="card-body">
@@ -36,6 +38,7 @@
                     </tfoot>
                 </table>
             </div>
+            @include('adminpanel.pages.pendapatan.modal')
         </div>
     </section>
 @endsection
