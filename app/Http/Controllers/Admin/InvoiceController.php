@@ -102,6 +102,7 @@ class InvoiceController extends Controller
             'status' => 'Lunas',
             'method' => 'Cash',
             'date' => date('Y-m-d'),
+            'created_by' => auth()->user()->id
         ];
 
         $storePaymentData = Payment::create($paymentData);
