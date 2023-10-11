@@ -17,7 +17,7 @@
                             <tr>
                                 <th>#</th>
                                 <th>Level</th>
-                                <th>Nominal Minimum <sub>/Semester</sub></th>
+                                <th>Nominal Minimum <sub>/Bulan</sub></th>
                                 <th>Opsi</th>
                             </tr>
                         </thead>
