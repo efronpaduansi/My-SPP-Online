@@ -9,7 +9,7 @@ use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 use Maatwebsite\Excel\Concerns\WithEvents;
 use Maatwebsite\Excel\Events\AfterSheet;
 use Illuminate\Support\Facades\DB;
-class PaymentTkExport implements FromCollection, WithHeadings
+class PaymentSDKelas1Export implements FromCollection, WithHeadings
 {
     /**
     * @return \Illuminate\Support\Collection
@@ -21,7 +21,7 @@ class PaymentTkExport implements FromCollection, WithHeadings
                     ->join('siswa as b', 'a.student_id', '=', 'b.id')
                     ->join('semester as c', 'a.semester_id', '=', 'c.id')
                     ->where('a.status', 'lunas')
-                    ->where('b.level_id', 1)
+                    ->where('b.level_id', 2)
                     ->get();
     }
 
