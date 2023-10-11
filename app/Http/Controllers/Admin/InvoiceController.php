@@ -74,6 +74,13 @@ class InvoiceController extends Controller
             'status' => 'Belum Bayar'
         ];
 
+        if($request->discount_type == 1){
+            $discount = (50/100) * $request->sub_total;
+            $data['discount'] = $discount;
+        }else{
+            $data['discount'] = $request->discount;
+        }
+
         $storeData = Invoice::create($data);
         if($storeData){
             toast('Faktur berhasil di tambahkan!','success')->timerProgressBar();
