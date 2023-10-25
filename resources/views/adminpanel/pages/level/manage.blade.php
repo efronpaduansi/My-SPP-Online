@@ -8,7 +8,7 @@
     <section class="section">
         <div class="card">
             <div class="card-header">
-                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#tambahLevelModal">Tambah Baru</button>
+                {{-- <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#tambahLevelModal">Tambah Baru</button> --}}
             </div>
             <div class="card-body">
                 <div class="table-responsive">
@@ -37,7 +37,7 @@
                                             <div class="modal-dialog modal-lg">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Kelas</h1>
+                                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Level</h1>
                                                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                             aria-label="Close"></button>
                                                     </div>
@@ -47,10 +47,10 @@
                                                             @csrf
                                                             @method('PUT')
                                                             <div class="form-group row">
-                                                                <label for="level_name" class="col-form-label col-sm-2">Nama
-                                                                    Level</label>
+                                                                {{-- <label for="level_name" class="col-form-label col-sm-2">Nama
+                                                                    Level</label> --}}
                                                                 <div class="col-sm-10">
-                                                                    <input type="text" name="level_name" id="level_name"
+                                                                    <input type="hidden" name="level_name" id="level_name"
                                                                         class="form-control"
                                                                         placeholder="Masukan Nama Level"
                                                                         data-parsley-required="true"
@@ -84,14 +84,14 @@
                                             </div>
                                         </div>
 
-                                        <form action="{{ route('level.destroy', $level->id) }}" method="POST">
+                                        {{-- <form action="{{ route('level.destroy', $level->id) }}" method="POST">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-sm btn-danger"
                                                 onclick="return confirm('Anda yakin menghapus data?')">
                                                 <i class="fas fa-times"></i>
                                             </button>
-                                        </form>
+                                        </form> --}}
                                     </td>
                                 </tr>
                             @endforeach
