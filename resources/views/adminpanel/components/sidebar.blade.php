@@ -116,7 +116,14 @@
                     </a>
                 </li>
                 @if (Auth::user()->role_id == 1)
-                    <li class="sidebar-item has-sub">
+                    <li class="sidebar-item {{ request()->is('staff') ? 'active' : '' }}">
+                        <a href="{{ route('staff.index') }}" class="sidebar-link">
+                            <i class="fas fa-users"></i>
+                            <span>Data User</span>
+                        </a>
+                    </li>
+
+                    {{-- <li class="sidebar-item has-sub">
                         <a href="#" class="sidebar-link">
                             <i class="fas fa-sliders-h"></i>
                             <span>Preferensi</span>
@@ -131,7 +138,7 @@
                             </li>
 
                         </ul>
-                    </li>
+                    </li> --}}
                 @endif
                 <li class="sidebar-item">
                     <form action="{{ route('auth.logout') }}" method="POST">
