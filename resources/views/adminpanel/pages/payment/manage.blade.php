@@ -16,7 +16,7 @@
                                 <th>Nama Siswa</th>
                                 <th>Jumlah</th>
                                 <th>Tgl Bayar</th>
-                                <th>Opsi</th>
+                                <th>Di Update Oleh</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -26,15 +26,7 @@
                                     <td>{{ $payment->invoice->siswa->name }}</td>
                                     <td>{{ 'Rp. ' . number_format($payment->amount, 0, '.', '.') }}</td>
                                     <td>{{ date('d/m/Y', strtotime($payment->date)) }}</td>
-                                    <td>
-                                        <form action="{{ route('payment.destroy', $payment->id) }}" method="POST">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-sm btn-danger"
-                                                onclick="return confirm('Anda yakin menghapus data ini?')"><i
-                                                    class="fas fa-times"></i></button>
-                                        </form>
-                                    </td>
+                                    <td>{{ $payment->user->name }}</td>
                                 </tr>
                             @endforeach
                         </tbody>

@@ -11,14 +11,17 @@ use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\SemesterController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\LevelSiswaController;
+use App\Http\Controllers\Admin\PendapatanController;
 use App\Http\Controllers\Admin\TahunAjaranController;
 
 
 Route::controller(LoginController::class)->group(function(){
-    Route::get('/', 'index')->name('auth.index');
-    Route::post('/', 'authenticate')->name('auth.authenticate');
-    Route::post('/logout', 'logout')->name('auth.logout');
+    Route::get('/', 'index')->name('auth.index')->middleware('guest');
+    Route::get('/login', 'login')->name('auth.login')->middleware('guest');
+    Route::post('/login', 'authenticate')->name('auth.authenticate')->middleware('guest');
+    Route::post('/logout', 'logout')->name('auth.logout')->middleware('auth');
 });
+
 
 Route::middleware(['auth'])->group(function () {
     
@@ -41,6 +44,7 @@ Route::middleware(['auth'])->group(function () {
     Route::controller(SemesterController::class)->group(function(){
         Route::get('semester', 'index')->name('semester.index');
         Route::post('semester', 'store')->name('semester.store');
+        Route::get('semester/close/{id}', 'closeSemester')->name('semester.close');
         Route::put('semester/{id}', 'update')->name('semester.update');
         Route::delete('semester/{id}', 'destroy')->name('semester.destroy');
     });
@@ -78,6 +82,12 @@ Route::middleware(['auth'])->group(function () {
     Route::controller(PaymentController::class)->group(function(){
         Route::get('payment', 'index')->name('payment.index');
         Route::delete('payment/{id}', 'destroy')->name('payment.destroy');
+    });
+
+    Route::controller(PendapatanController::class)->group(function(){
+        Route::get('pendapatan', 'index')->name('pendapatan.index');
+        Route::get('pendapatan/export-pdf', 'exportPDF')->name('pendapatan.export-pdf');
+        Route::get('pendapatan/export-data', 'exportData')->name('pendapatan.exportData');
     });
 
     Route::controller(ProfileController::class)->group(function(){

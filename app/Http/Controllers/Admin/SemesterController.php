@@ -2,16 +2,19 @@
 
 namespace App\Http\Controllers\Admin;
 
+use Alert;
+use App\Models\Siswa;
 use App\Models\Semester;
 use App\Models\TahunAjaran;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use App\Http\Controllers\Controller;
-use Alert;
+
 class SemesterController extends Controller
 {
     public function index()
     {
-        $data = Semester::latest()->get();
+        $data = Semester::orderBy('id', 'desc')->get();
         $tahunAjaran = TahunAjaran::latest()->get();
         return view('adminpanel.pages.semester.manage', compact('data', 'tahunAjaran'));
     }
@@ -67,5 +70,21 @@ class SemesterController extends Controller
             toast('Gagal menghapus data!','error')->timerProgressBar();
             return redirect()->back();
         }
+    }
+
+    public function closeSemester($id)
+    {
+        $today = Carbon::now();
+        $closeSemester = Semester::findOrFail($id)->update(array('close_date' => $today));
+
+         //Get all students to update
+         $students = Siswa::where('status', 'active')->get();
+         foreach($students as $student)
+         {
+            $student->level_id += 1;
+            $student->update();
+         }
+         toast('Semester di Tutup!','success')->timerProgressBar();
+         return redirect()->route('semester.index');
     }
 }

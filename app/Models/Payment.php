@@ -34,6 +34,7 @@ class Payment extends Model
         'status',
         'method',
         'date',
+        'created_by'
     ];
 
     public function invoice()
@@ -41,8 +42,8 @@ class Payment extends Model
         return $this->belongsTo(Invoice::class, 'invoice_id', 'id');
     }
 
-    // public function user()
-    // {
-    //     return $this->belongsTo(User::class, 'created_by', 'id');
-    // }
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'created_by', 'id');
+    }
 }

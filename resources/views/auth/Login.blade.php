@@ -4,9 +4,14 @@
     <div id="auth">
         <div class="row h-100">
             <div class="col-lg-5 col-12">
+                {{-- Sekolah Logo Image --}}
+                <div class="logo text-center mt-5">
+                    <img src="{{ asset('adminpanel/assets/static/images/logo/sekolah-logo.png') }}" alt="Sekolah Logo"
+                        width="120px" height="128px">
+                </div>
                 <div id="auth-left">
-                    <h1>Login</h1>
-                    <p class="mb-5">
+                    <h1 class="text-center">Login</h1>
+                    <p class="mb-5 text-center">
                         Silahkan login untuk melanjutkan.
                     </p>
 

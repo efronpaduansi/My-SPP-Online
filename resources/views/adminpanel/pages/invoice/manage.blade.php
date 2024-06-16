@@ -8,7 +8,9 @@
     <section class="section">
         <div class="card">
             <div class="card-header">
-                <a href="{{ route('invoice.create') }}" class="btn btn-primary">Buat Tagihan</a>
+                @if (Auth::user()->role_id == 1)
+                    <a href="{{ route('invoice.create') }}" class="btn btn-primary">Buat Tagihan</a>
+                @endif
             </div>
             <div class="card-body">
                 <div class="table-responsive">
@@ -52,14 +54,16 @@
                                                         href="{{ route('invoice.show', $invoice->id) }}"><i
                                                             class="fas fa-eye"></i>
                                                         Show</a></li>
-                                                <li><a class="dropdown-item"
-                                                        href="{{ route('invoice.edit', $invoice->id) }}"><i
-                                                            class="fas fa-edit"></i>
-                                                        Edit</a></li>
-                                                <li><a class="dropdown-item text-danger"
-                                                        href="{{ route('invoice.destroy', $invoice->id) }}"
-                                                        onclick="return confirm('Anda yakin menghapus data ini?')"><i
-                                                            class="fas fa-trash"></i> Delete</a></li>
+                                                @if (Auth::user()->role_id == 1)
+                                                    <li><a class="dropdown-item"
+                                                            href="{{ route('invoice.edit', $invoice->id) }}"><i
+                                                                class="fas fa-edit"></i>
+                                                            Edit</a></li>
+                                                    <li><a class="dropdown-item text-danger"
+                                                            href="{{ route('invoice.destroy', $invoice->id) }}"
+                                                            onclick="return confirm('Anda yakin menghapus data ini?')"><i
+                                                                class="fas fa-trash"></i> Delete</a></li>
+                                                @endif
                                             </ul>
                                         </div>
                                     </td>

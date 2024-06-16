@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Alert;
 use App\Models\Kelas;
 use App\Models\Siswa;
+use App\Models\Semester;
 use App\Models\LevelSiswa;
 use Illuminate\Http\Request;
 use App\Models\KartuKeluarga;
