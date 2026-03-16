@@ -13,7 +13,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\LevelSiswaController;
 use App\Http\Controllers\Admin\PendapatanController;
 use App\Http\Controllers\Admin\TahunAjaranController;
-
+use App\Livewire\Admin\Dashboard\Index;
 
 Route::controller(LoginController::class)->group(function(){
     Route::get('/', 'index')->name('auth.index')->middleware('guest');
@@ -24,9 +24,9 @@ Route::controller(LoginController::class)->group(function(){
 
 
 Route::middleware(['auth'])->group(function () {
-    
+
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-    
+
     Route::controller(KelasController::class)->group(function(){
         Route::get('kelas', 'index')->name('kelas.index');
         Route::post('kelas', 'store')->name('kelas.store');
@@ -106,5 +106,12 @@ Route::middleware(['auth'])->group(function () {
         Route::delete('/staff/{id}', 'destroy')->name('staff.destroy');
     });
 
+});
+
+/**
+ * *******LIVEWIRE VERSION*******
+ */
+Route::group(['prefix' => '/v2', 'name' => 'v2.', 'middleware' => ['auth']], function(){
+    Route::get('/dashboard', Index::class)->name('dashboard');
 });
 
