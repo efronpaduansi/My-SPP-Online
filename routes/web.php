@@ -111,7 +111,7 @@ Route::middleware(['auth'])->group(function () {
 /**
  * *******LIVEWIRE VERSION*******
  */
-Route::group(['prefix' => '/v2', 'name' => 'v2.', 'middleware' => ['auth']], function(){
+Route::group(['prefix' => '/v2', 'as' => 'v2.', 'middleware' => ['auth']], function(){
     Route::get('/dashboard', Index::class)->name('dashboard');
 });
 

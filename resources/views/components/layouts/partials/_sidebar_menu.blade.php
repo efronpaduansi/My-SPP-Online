@@ -2,8 +2,8 @@
     <ul class="menu">
         <li class="sidebar-title">Menu</li>
 
-        <li class="sidebar-item {{ request()->is('dashboard') ? 'active' : '' }}">
-            <a href="{{ route('dashboard') }}" class="sidebar-link">
+        <li class="sidebar-item @yield('dashboardMenu')">
+            <a href="{{ route('v2.dashboard') }}" class="sidebar-link">
                 <i class="fas fa-home"></i>
                 <span>Dashboard</span>
             </a>
